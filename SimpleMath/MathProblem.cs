@@ -21,8 +21,10 @@ public class MathProblem
 
     int SolveMultiplication(string problem)
     {
-        return Solve(problem, '*', MyMath.Multiply, (s) => 1);
+        return Solve(problem, '*', MyMath.Multiply, SolveDivision);
     }
+
+    int SolveDivision(string problem) => Solve(problem, '/', MyMath.Divide, (s) => throw new Exception($"Unable to solve {s}"));
     
     int Solve(string problem, char symbol, System.Func<int[], int> operation, Func<string, int> fallback)
     {

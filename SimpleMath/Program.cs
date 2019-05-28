@@ -6,8 +6,16 @@ namespace SimpleMath
     {
         static void Main(string[] args)
         {
-            var p = new MathProblem("1*2*3+1");
-            Console.WriteLine(p.Value + " wants 7");
+            
+            try
+            {
+                var p = new MathProblem("10/5+2");
+                Console.WriteLine(p.Value + " wants 4");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

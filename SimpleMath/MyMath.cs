@@ -31,4 +31,14 @@ static public class MyMath
         }
         return product;
     }
+
+    static public int Divide(params int[] Numbers)
+    {
+        int product = Numbers[0];
+        for (int i = 1; i < Numbers.Length; i++)
+        {
+            product /= Numbers[i];
+        }
+        return product;
+    }
 }
