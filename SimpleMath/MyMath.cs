@@ -21,4 +21,14 @@ static public class MyMath
     {
         return m - Sum(s);
     }
+
+    static public int Multiply(params int[] factors)
+    {
+        int product = 1;
+        foreach (var f in factors)
+        {
+            product *= f;
+        }
+        return product;
+    }
 }

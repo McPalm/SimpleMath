@@ -3,10 +3,7 @@ using System.Text.RegularExpressions;
 
 public class MathProblem
 {
-    public MathProblem[] LeftHand { get; set;}
-
-    int value;
-    public int Value => value;
+    public int Value { get; }
 
     public MathProblem(string problem)
 	{
@@ -14,8 +11,25 @@ public class MathProblem
         var numbers = new int[split.Length];
         for (int i = 0; i < split.Length; i++)
         {
-            numbers[i] = int.Parse(split[i]);
+            if (int.TryParse(split[i], out int n))
+                numbers[i] = n;
+            else
+                numbers[i] = SolveMultiplication(split[i]);
         }
-        value = MyMath.Sum(numbers);
+        Value = MyMath.Sum(numbers);
 	}
+
+    int SolveMultiplication(string problem)
+    {
+        var split = problem.Split('*');
+        var factors = new int[split.Length];
+        for (int i = 0; i < split.Length; i++)
+        {
+            if (int.TryParse(split[i], out int n))
+                factors[i] = n;
+            else
+                factors[i] = 1;
+        }
+        return MyMath.Multiply(factors);
+    }
 }
