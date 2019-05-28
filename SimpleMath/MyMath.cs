@@ -7,9 +7,9 @@ static public class MyMath
     /// </summary>
     /// <param name="numbers"></param>
     /// <returns></returns>
-	static public int Sum(params int[] numbers)
+	static public double Sum(params double[] numbers)
     {
-        int r = 0;
+        double r = 0;
         foreach (var n in numbers)
         {
             r += n;
@@ -17,14 +17,14 @@ static public class MyMath
         return r;
     }
 
-    static public int Subtract(int m, params int[] s)
+    static public double Subtract(double m, params double[] s)
     {
         return m - Sum(s);
     }
 
-    static public int Multiply(params int[] factors)
+    static public double Multiply(params double[] factors)
     {
-        int product = 1;
+        double product = 1;
         foreach (var f in factors)
         {
             product *= f;
@@ -32,11 +32,13 @@ static public class MyMath
         return product;
     }
 
-    static public int Divide(params int[] Numbers)
+    static public double Divide(params double[] Numbers)
     {
-        int product = Numbers[0];
+        double product = Numbers[0];
         for (int i = 1; i < Numbers.Length; i++)
         {
+            if (Numbers[i] == 0)
+                throw new DivideByZeroException();
             product /= Numbers[i];
         }
         return product;

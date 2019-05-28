@@ -14,6 +14,10 @@ namespace SimpleMath
                     var p = new MathProblem(input);
                     Console.WriteLine(input + " = " + p.Value);
                 }
+                catch(DivideByZeroException e)
+                {
+                    Console.WriteLine("Not defined, tried to divide by zero");
+                }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
