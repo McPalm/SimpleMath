@@ -7,6 +7,7 @@ public class MathProblem
 
     public MathProblem(string problem)
 	{
+        problem = Regex.Replace(problem, @"\s+", "");
         var split = Regex.Split(problem, @"(?=[-+])"); // Implement my own math library, use regex.
         var numbers = new int[split.Length];
         for (int i = 0; i < split.Length; i++)
