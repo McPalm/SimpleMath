@@ -21,15 +21,20 @@ public class MathProblem
 
     int SolveMultiplication(string problem)
     {
-        var split = problem.Split('*');
-        var factors = new int[split.Length];
+        return Solve(problem, '*', MyMath.Multiply, (s) => 1);
+    }
+    
+    int Solve(string problem, char symbol, System.Func<int[], int> operation, Func<string, int> fallback)
+    {
+        var split = problem.Split(symbol);
+        var numbers = new int[split.Length];
         for (int i = 0; i < split.Length; i++)
         {
             if (int.TryParse(split[i], out int n))
-                factors[i] = n;
+                numbers[i] = n;
             else
-                factors[i] = 1;
+                numbers[i] = fallback(split[i]);
         }
-        return MyMath.Multiply(factors);
+        return operation(numbers);
     }
 }
