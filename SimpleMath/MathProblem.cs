@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 public class MathProblem
@@ -7,25 +8,22 @@ public class MathProblem
 
     public MathProblem(string problem)
 	{
+        // remove all white space
         problem = Regex.Replace(problem, @"\s+", "");
-        var split = Regex.Split(problem, @"(?=[-+])"); // Implement my own math library, use regex.
-        var numbers = new int[split.Length];
-        for (int i = 0; i < split.Length; i++)
-        {
-            if (int.TryParse(split[i], out int n))
-                numbers[i] = n;
-            else
-                numbers[i] = SolveMultiplication(split[i]);
-        }
-        Value = MyMath.Sum(numbers);
+        // replace - with +-
+        problem = Regex.Replace(problem, @"(?<v>[0-9])[-]", @"${v}+-");
+        // split all + values
+        Value = SolveAddition(problem);
 	}
+
+    int SolveAddition(string problem) => Solve(problem, '+', MyMath.Sum, SolveMultiplication);
 
     int SolveMultiplication(string problem)
     {
         return Solve(problem, '*', MyMath.Multiply, SolveDivision);
     }
 
-    int SolveDivision(string problem) => Solve(problem, '/', MyMath.Divide, (s) => throw new Exception($"Unable to solve {s}"));
+    int SolveDivision(string problem) => Solve(problem, '/', MyMath.Divide, (s) => throw new Exception($"Unable to solve \"{s}\""));
     
     int Solve(string problem, char symbol, System.Func<int[], int> operation, Func<string, int> fallback)
     {
