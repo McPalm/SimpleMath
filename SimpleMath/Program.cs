@@ -6,15 +6,19 @@ namespace SimpleMath
     {
         static void Main(string[] args)
         {
-            
-            try
+            Console.WriteLine("Enter a math problem");
+            for (string input = Console.ReadLine(); input.ToLower() != "quit"; input = Console.ReadLine())
             {
-                var p = new MathProblem("10/5+2");
-                Console.WriteLine(p.Value + " wants 4");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    var p = new MathProblem(input);
+                    Console.WriteLine(input + " = " + p.Value);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Console.WriteLine("Enter another math problem or type quit to quit");
             }
         }
     }
