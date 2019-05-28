@@ -6,7 +6,10 @@ namespace SimpleMath
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var five = MyMath.Sum(2, 2, 1);
+            Console.WriteLine($"{five} is five");
+            var two = MyMath.Sum(1, 1);
+            Console.WriteLine($"{two} is two");
         }
     }
 }
