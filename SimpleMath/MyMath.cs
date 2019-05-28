@@ -16,4 +16,9 @@ static public class MyMath
         }
         return r;
     }
+
+    static public int Subtract(int m, params int[] s)
+    {
+        return m - Sum(s);
+    }
 }
